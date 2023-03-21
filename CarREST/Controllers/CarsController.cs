@@ -40,7 +40,7 @@ namespace CarREST.Controllers
             Car? foundCar = _repository.GetById(id);
             if(foundCar == null)
             {
-                return NoContent();
+                return NotFound();
             }
             return Ok(foundCar);
         }
@@ -105,7 +105,7 @@ namespace CarREST.Controllers
             Car? deletedCar = _repository.Delete(id);
             if(deletedCar == null) 
             {
-                return NoContent();
+                return NotFound();
             }
             return Ok(deletedCar);
         }

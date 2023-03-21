@@ -8,6 +8,7 @@ builder.Services.AddControllers();
 
 builder.Services.AddSingleton<CarsRepository>(new CarsRepository());
 
+builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 

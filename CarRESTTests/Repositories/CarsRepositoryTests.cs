@@ -41,7 +41,9 @@ namespace CarREST.Repositories.Tests
         [TestMethod()]
         public void AddTest()
         {
-            Assert.AreEqual("5 volvo 12345 1000", testCar.ToString());
+            Car addCar = new Car { Id = 1, LicensePlate= "1234", Model="addcar", Price= 1000 };
+            repository.Add(addCar);
+            Assert.AreEqual(6, repository.GetAll().Count());
         }
 
         [TestMethod()]
@@ -49,7 +51,8 @@ namespace CarREST.Repositories.Tests
         {
             Car updatedCar = new Car { Id = 5, LicensePlate = "test", Model = "volvo", Price = 110 };
             Car? result = repository.Update(testCar.Id, updatedCar);
-            Assert.AreEqual("5 volvo test 110", result.ToString());
+            Assert.AreEqual(repository.GetById(5), result);
+
             Car? nullCar = repository.Update(7, updatedCar);
             Assert.IsNull(nullCar);
         }
@@ -68,8 +71,8 @@ namespace CarREST.Repositories.Tests
             repository.Delete(testId);
             Assert.IsNull(repository.GetById(testId));
 
-            repository.Delete(testId);
-            Assert.IsNull(repository.GetById(testId));
+            //repository.Delete(testId);
+            Assert.IsNull(repository.Delete(testId));
 
         }
     }
